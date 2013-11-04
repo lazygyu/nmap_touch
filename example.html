@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko_KR" xml:lang="ko_KR">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>네이버 지도 터치 이벤트 활성화하기</title>
+	<script type="text/javascript" src="touchnmap.js"></script>
+</head>
+<body>
+<div id = "testMap" style="border:1px solid #000; width:500px; height:400px; margin:20px;"></div>
+<script type="text/javascript">
+	touchmap.init('b8244bc6fd61f56d055301127335e822');
+
+	touchmap.ready( function(){
+
+		var oPoint = new nhn.api.map.LatLng(37.5010226, 127.0396037);
+		nhn.api.map.setDefaultPoint('LatLng');
+		oMap = new nhn.api.map.Map('testMap', {
+								point : oPoint,
+								zoom : 10, // - 초기 줌 레벨은 10으로 둔다.
+								enableWheelZoom : false,
+								enableDragPan : true,
+								enableDblClickZoom : false,
+								mapMode : 0,
+								activateTrafficMap : false,
+								activateBicycleMap : false,
+								minMaxLevel : [ 1, 14 ],
+								size : new nhn.api.map.Size(500, 400)
+		});
+		var clickEvent = function(pos){ // - 클릭 이벤트 핸들러
+				alert(pos.point.getX() + " , " + pos.point.getY()); // - 마우스를 클릭했을때의 좌표를 alert 창으로 알려줌.
+		};
+		touchmap.enable(oMap);
+		oMap.attach("click",clickEvent);
+	});
+</script>
+</body>
+</html>
