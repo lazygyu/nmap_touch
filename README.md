@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This script will treat a touch event (aka tap) like a click event with Naver map javascript APIs. 
+This script will treat a touch event (aka tap) likes a click event with Naver map javascript APIs. 
 
 ## Usage:
 ```html
