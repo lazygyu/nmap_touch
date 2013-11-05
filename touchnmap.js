@@ -1,3 +1,8 @@
+/**
+* touchnmap.js
+* by lazygyu (lazygyu at gmail.com)
+* free for use under BSD license
+*/
 (function(exports){
 	if( !window.jindo ) window.jindo = {};
 	var touchNMapInit = function(apikey){
@@ -52,9 +57,9 @@
 	};
 
 	var touchEnable = function(mapObj){
-		jindo.$Fn(nm_touchStart, mapObj).attach(mapObj._elWrap, "touchstart");
-		jindo.$Fn(nm_touchMove, mapObj).attach(mapObj._elWrap, "touchmove");
-		jindo.$Fn(nm_touchEnd, mapObj).attach(mapObj._elWrap, "touchend");
+		window.jindo.$Fn(nm_touchStart, mapObj).attach(mapObj._elWrap, "touchstart");
+		window.jindo.$Fn(nm_touchMove, mapObj).attach(mapObj._elWrap, "touchmove");
+		window.jindo.$Fn(nm_touchEnd, mapObj).attach(mapObj._elWrap, "touchend");
 	};
 
 	var loaded = [];
@@ -66,4 +71,4 @@
 	exports.init = touchNMapInit;
 	exports.enable = touchEnable;
 	exports.ready = mapLoaded;
-})(typeof exports === 'undefined'?this['touchmap']={}:exports);
+})(this['touchmap']={});
