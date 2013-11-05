@@ -27,11 +27,21 @@
 
 	var nm_touchEnd = function(oEvent){
 		if(!nm_touchEvent.moved){
-			var oPoint = this._getEventOccuredPoint(oEvent);
 			var elEl = oEvent.element;
+			if (this._oDupLayer._isParentOf(elEl)) {
+                return
+            }
+            if (elEl.tagName == "svg:svg") {
+                elEl = elEl.parentNode.parentNode
+            }
+			var oPoint = this._getEventOccuredPoint(oEvent);
+			
 			var sUniq = nhn.mapcore.Util.mapGetParentByClass(elEl, "_nmap_uid")&&RegExp.$0;
 			var oObj=sUniq?nhn.api.map.Map._objectManager._getMapObjectByUID(sUniq):this;
-			this._launchHandlers("click", {event:oEvent, point:oPoint}); 
+			
+			var oEv = { event:oEvent, point:oPoint };
+
+            oObj.fireEvent("click", oEv);
 		}
 		nm_touchEvent.moved = false;
 
